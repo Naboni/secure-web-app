@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <!-- Favicons -->
+    {% load static %}
+
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'assets/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/quill/quill.snow.css' %} "
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/quill/quill.bubble.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/simple-datatables/style.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/login.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="h-100 gradient-form" style="background-color: #eee">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="card-body p-md-5 mx-md-4">
+                    <div class="text-center">
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                        style="width: 185px"
+                        alt="logo"
+                      />
+                      <h4 class="mt-1 mb-5 pb-1">Secure Web App</h4>
+                    </div>
+                    {% if form.errors %}
+                    <div class="errors">
+                      <ul>
+                        {% for field in form %} {% if field.errors %}
+                        <li>
+                          {{ field.label }}:
+                          <ul>
+                            {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                        {% endif %} {% endfor %}
+                      </ul>
+                    </div>
+                    {% endif %}
+                    <form method="post" autocomplete="off">
+                      <p>Please login to your account</p>
+                      {% csrf_token %}
+                      <!-- {{ form.as_div }} -->
+                      {% for field in form %}
+                      <div class="form-outline mb-4">
+                        {{ field.label_tag }} {{ field }}
+                        <!-- Add custom styles for each input -->
+                        {% if field.name == 'username' %}
+                        <br />
+                        {% elif field.name == 'password' %}
+                        <br />
+                        {% endif %}
+                      </div>
+                      {% endfor %}
+                      <div class="text-center pt-1 mb-5 pb-1">
+                        <button
+                          class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                          type="submit"
+                        >
+                          Login
+                        </button>
+                      </div>
+
+                      <div
+                        class="d-flex align-items-center justify-content-center pb-4"
+                      >
+                        <p class="small mb-0">
+                          Don't have account?
+                          <a href="{% url 'register' %}">Create an account</a>
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-6 d-flex align-items-center gradient-custom-2"
+                >
+                  <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                    <h4 class="mb-4">Secure Web App</h4>
+                    <p class="small mb-0">
+                      Secure your web app with advanced security features
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- End #main -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>
